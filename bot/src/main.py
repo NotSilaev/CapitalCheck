@@ -1,6 +1,7 @@
 from config import settings
 
-from handlers import common
+from handlers import common, orders
+from handlers.forms import add_order_form
 
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -13,8 +14,12 @@ async def main() -> None:
     bot = Bot(token=settings.telegram_bot_token)
     dp = Dispatcher(storage=MemoryStorage())
 
-    # Routers
+    # Handlers routers
     dp.include_router(common.router)
+    dp.include_router(orders.router)
+
+    # Forms routers
+    dp.include_router(add_order_form.router)
 
     await dp.start_polling(bot)
 

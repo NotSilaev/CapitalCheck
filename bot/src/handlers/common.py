@@ -64,9 +64,9 @@ async def home(event: Message | CallbackQuery, state: FSMContext) -> None:
     )
 
     keyboard = InlineKeyboardBuilder()
-    keyboard.button(text='➕ Add order', callback_data='#')
-    keyboard.button(text='🗂 Orders', callback_data='#')
-    keyboard.button(text='💼 Portfolio', callback_data='#')
+    keyboard.button(text='➕ Add order', callback_data='add_order')
+    keyboard.button(text='🗂 Orders', callback_data='orders')
+    keyboard.button(text='💼 Portfolio', callback_data='portfolio')
     keyboard.adjust(1)
 
     await respondEvent(
