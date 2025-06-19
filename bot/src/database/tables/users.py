@@ -8,7 +8,9 @@ import datetime
 
 class UsersTable:
     @staticmethod
-    def addUser(user_id: int, created_at: datetime.datetime) -> None:
+    def addUser(user_id: int) -> None:
+        created_at = datetime.datetime.now()
+
         stmt = '''
             INSERT INTO users (id, created_at)
             VALUES (%s, %s)

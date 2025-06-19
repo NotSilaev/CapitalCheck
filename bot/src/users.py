@@ -3,8 +3,6 @@ from cache import setCacheValue, getCacheValue
 
 from aiogram.types.user import User
 
-import datetime
-
 
 def doesUserExist(user_id: int) -> bool:
     "Checks if the user exists in the cache and in the database."
@@ -24,9 +22,7 @@ def doesUserExist(user_id: int) -> bool:
 def addUser(user_id: int) -> None:
     "Adds the user to the database and saves the data to the cache."
 
-    created_at = datetime.datetime.now()
     UsersTable.addUser(user_id, created_at)
-    
     setCacheValue(key=f'user-{user_id}', value='exists')
 
 
