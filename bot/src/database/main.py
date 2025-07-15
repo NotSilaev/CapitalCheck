@@ -13,6 +13,7 @@ def getDatabaseConnection() -> psycopg2.extensions.connection:
         dbname=settings.db_name, 
         user=settings.db_user,
         password=settings.db_password, 
+        options="-c timezone=UTC"
     )
 
 

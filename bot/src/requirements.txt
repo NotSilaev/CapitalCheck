@@ -22,5 +22,6 @@ redis==6.2.0
 requests==2.32.4
 typing-inspection==0.4.1
 typing_extensions==4.14.0
+tzdata==2025.2
 urllib3==2.4.0
 yarl==1.20.1

@@ -1,5 +1,6 @@
 from database.tables.users import UsersTable
 from cache import setCacheValue, getCacheValue
+from utils import getCurrentDateTime
 
 from aiogram.types.user import User
 
@@ -22,7 +23,10 @@ def doesUserExist(user_id: int) -> bool:
 def addUser(user_id: int) -> None:
     "Adds the user to the database and saves the data to the cache."
 
-    UsersTable.addUser(user_id, created_at)
+    timezone = 'UTC'
+    created_at = getCurrentDateTime()
+
+    UsersTable.addUser(user_id, timezone, created_at)
     setCacheValue(key=f'user-{user_id}', value='exists')
 
 

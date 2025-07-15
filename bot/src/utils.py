@@ -1,6 +1,7 @@
 from aiogram.types import Message, CallbackQuery
 
-import datetime
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 
 async def respondEvent(event: Message | CallbackQuery, **kwargs) -> int:
@@ -15,10 +16,16 @@ async def respondEvent(event: Message | CallbackQuery, **kwargs) -> int:
     return bot_message.message_id
 
 
-def makeGreetingMessage() -> str:
+def getCurrentDateTime(timezone_code: str = 'UTC') -> datetime:
+    timezone = ZoneInfo(timezone_code)
+    current_datetime = datetime.now(tz=timezone)
+    return current_datetime
+
+
+def makeGreetingMessage(timezone_code: str = 'UTC') -> str:
     "Generates a welcome message based on the current time of day."
 
-    hour = datetime.datetime.now().hour
+    hour = getCurrentDateTime(timezone_code).hour
 
     if hour in range(0, 3+1) or hour in range(22, 23+1): # 22:00 - 3:00 is night
         greeting = '🌙 Good night'
